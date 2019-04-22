@@ -14,6 +14,13 @@ class ApplicationController < Sinatra::Base
     redirect '/'
   end
 
+  get '/gossips/:id/' do
+   #"Hello #{params['id']}"
+   erb :show
+  end
+
+  
+
   #post '/gossips/new/' do
    # puts "Salut, je suis dans le serveur"
    #puts "Ceci est le contenu du hash params : #{params}"

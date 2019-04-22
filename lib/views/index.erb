@@ -3,15 +3,17 @@
     <title>The Gossip Project</title>
   </head>
   <body>
-    <h1>Mon super site de gossip, depuis le dossier views !</h1>
+    <h1>Mon super site de gossip !</h1>
     <main>
       <p> Bienvenue sur le site des potins de THP.</p>
       <p> Tu peux aller créer un nouveau potin en cliquant <a href="/gossips/new/">ici</a> ! </p>
       <p> Sinon, voici la liste des potins !! </p>
-      <% gossips.each do |gossip| %>
+      <% gossips.each_with_index do |gossip, index| %>
         <p>
+          <%= "<a href=\"/gossips/#{index}/\">Gossip n°#{ index}</a>" %></br>
           <%= gossip.author %><br/>
           <%= gossip.content %>
+          
         </p>
       <% end %>
     </main>

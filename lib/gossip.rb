@@ -24,6 +24,10 @@ class Gossip
     return all_gossips
   end
 
+  def self.find(id)
+    CSV.read("./db/gossip.csv")[id]
+  end
+
 end
 
 #binding.pry 
