@@ -1,9 +1,9 @@
 <html>
   <head>
-    <title>page du potin séléctionné</title>
+    <title>Editer un potin</title>
   </head>
   <body>
-    <h1>Page du potin <%= params['id'].to_i%></h1> 
+    <h1>Editer le potin n°<%= params['id'].to_i%></h1>
     
     <% gossip_found = Gossip.find(params['id'].to_i) %>
     <% author = gossip_found[0] %>
@@ -14,9 +14,12 @@
       Son contenu : <%= content %>
     </p>
 
-    <p>
-      <%= "Veux-tu éditer ce potin ? Clique <a href=\"/gossips/#{params['id']}/edit/\"> ici </a>" %>
-    </p>
+
+    <form action='' method='POST'>
+      Saisi ici ton nom :  <input type='text' name='gossip_author'/><br/>
+      Edit le potin : <input type='text' name='gossip_content'/><br/>
+      <input type='submit'/>
+    </form>
 
     <p>
       <a href="/">Page d'accueil</a>

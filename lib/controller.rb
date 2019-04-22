@@ -14,18 +14,19 @@ class ApplicationController < Sinatra::Base
     redirect '/'
   end
 
+  #permet d'ouvrir la page show.erg de chaque potins
   get '/gossips/:id/' do
-   #"Hello #{params['id']}"
    erb :show
   end
 
-  
+  #permet d'ouvrir le lien vers edit.erb
+  get '/gossips/:id/edit/' do
+   erb :edit
+  end
 
-  #post '/gossips/new/' do
-   # puts "Salut, je suis dans le serveur"
-   #puts "Ceci est le contenu du hash params : #{params}"
-   # puts "Trop bien ! Et ceci est ce que l'utilisateur a passé dans le champ gossip_author : #{params["gossip_author"]}"
-   # puts "De la bombe, et du coup ça, ça doit être ce que l'utilisateur a passé dans le champ gossip_content : #{params["gossip_content"]}"
-   # puts "Ça déchire sa mémé, bon allez je m'en vais du serveur, ciao les BGs !"
-  #end
+post '/gossips/:id/edit/' do 
+  	Gossip.new(params["gossip_author"], params["gossip_content"]).save
+    redirect '/'
+  end
+
 end
