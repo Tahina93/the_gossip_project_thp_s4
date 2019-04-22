@@ -30,20 +30,21 @@ class Gossip
     CSV.read("./db/gossip.csv")[id]
   end
 
-  def self.update(i, modified_author, modified_content) 
-		rows_array = CSV.read('../db/gossip.csv')
-		desired_indices = [i].sort # these are rows you would like to modify
-		rows_array.each.with_index(desired_indices[0]) do |row, index| 
-	 if desired_indices.include?(index)
-	  # modify over here
-	  rows_array[index][0] = modified_author
-	  rows_array[index][1] = modified_content
-	 end
-	end
-		# now update the file
-		CSV.open("../db/gossip.csv", 'wb') { |csv| rows_array.each{|row| csv << row}}
+  def self.update(id, author, content)
+  	csv_new = CSV.read("./db/gossip.csv")
+  	csv_new.each_index do |index|
+  	  if index == id.to_i
+  	  	csv_new[index][0] = author
+  	  	csv_new[index][1] = content
+  	  end
+  	end
 
-	end
+  	CSV.open('./db/gossip.csv', 'wb') do |csv|
+  	  csv_new.each do |row|
+  	  	csv << row
+  	  end
+  	end
+  end
 
 end
 
